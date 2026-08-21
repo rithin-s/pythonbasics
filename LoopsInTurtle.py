@@ -1,0 +1,28 @@
+import turtle
+rithin = turtle.Turtle()
+rithin.shape("triangle")
+rithin.color("black")
+rithin.speed(50)
+rithin.hideturtle()
+for i in range(10):
+    rithin.write("step")
+    rithin.penup()
+    rithin.forward(10)
+    rithin.left(90)
+    rithin.forward(10)
+    rithin.right(90)
+    rithin.forward(10)
+    rithin.pendown()
+rithin.color("red")
+rithin.write("Floor 1 Entrance")
+rithin.penup()
+rithin.forward(80)
+rithin.pendown()
+rithin.forward(150)
+rithin.penup()
+rithin.goto(0,0)
+rithin.shape("turtle")
+rithin.showturtle()
+for a in range(10):
+    i
+turtle.done()

@@ -1,0 +1,12 @@
+import turtle
+rithin = turtle.Turtle()
+rithin.shape("turtle")
+rithin.color("black","red")
+rithin.speed("fastest")
+rithin.penup()
+rithin.right(90)
+rithin.pendown()
+rithin.begin_fill()
+rithin.circle(100,360,123)
+rithin.end_fill()
+turtle.Screen().exitonclick()

@@ -1,0 +1,26 @@
+import turtle
+rithin = turtle.Turtle()
+rithin.shape("turtle")
+rithin.color("white","red")
+turtle.Screen().bgcolor("black")
+rithin.pensize(3)
+rithin.penup()
+rithin.goto(-200,20)
+rithin.pendown()
+rithin.circle(50,180,5)
+if rithin.ycor()< 100:
+    rithin.penup()
+    rithin.goto(0,0)
+    rithin.pendown()
+    rithin.begin_fill()
+    rithin.circle(50,360,3)
+    rithin.end_fill()
+else:
+    rithin.penup()
+    rithin.goto(0,0)
+    rithin.pendown()
+    rithin.begin_fill()
+    rithin.circle(50,360,5)
+    rithin.end_fill()
+turtle.Screen().exitonclick()
+
