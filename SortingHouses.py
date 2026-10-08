@@ -2,7 +2,7 @@ import turtle
 #user_input = "brave"
 #user_input = "smart"
 #user_input = "dark arts"
-#user_input = "humble"
+user_input = "humble"
 rithin = turtle.Turtle()
 turtle.screensize(500,1200)
 rithin.shape("turtle")

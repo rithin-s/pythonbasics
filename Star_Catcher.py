@@ -82,12 +82,15 @@ def starting_screen():
 
 def start():
     #start the game
+    global left, right
     star.clear()
     screen.bgcolor("black")
     star.showturtle()
     player.showturtle()
     game_loop()
     controls()
+    left = True
+    right = True
 
 
 def lost():
@@ -123,10 +126,17 @@ def check_catch():
         lives_d.write("Lives = " + str(lives), font=("Arial", 24, "bold"))
         star.setposition(random.randint(-280, 280), 200)
 
+def speed_increase():
+    #to increase the speed of the star every time the score is a multiple of 20
+    global star_speed, score
+    if score % 20 == 0:
+        star_speed = star_speed + 10
+
 
 def game_loop():
     #to make the star come down
     global game, star_speed
+    speed_increase()
     if game:
         while game:
             star.speed(star_speed)
@@ -138,36 +148,38 @@ def game_loop():
     else:
         game = False
 
-
-def speed_increase():
-    #to increase the speed of the star every time the score is a multiple of 20
-    global star_speed, score
-    if score % 20 == 0:
-        star_speed = star_speed + 3
+left = True
+right = True
 
 
 def move_left():
     #to move left
-    player.backward(20)
+    if left:
+        player.backward(20)
     #wrap
     if player.xcor() < -290:
         player.goto(280, -250)
         check_catch()
+        speed_increase()
 
 
 def move_right():
     #to move right
-    player.forward(20)
+    if right:
+        player.forward(20)
     #wrap
     if player.xcor() > 290:
         player.goto(-280, -250)
         check_catch()
+        speed_increase()
 
 
 def pause():
     #to pause the game
-    global game
+    global game, left, right
     game = False
+    left = False
+    right = False
     star.pencolor("red")
     star.write("game pause")
     stop_controls()
@@ -208,7 +220,7 @@ def restart():
     global score, lives, star_speed
     score = 0
     lives = 3
-    star_speed = 2
+    star_speed = 3
     player.clear()
     lives_d.clear()
     score_d.clear()
