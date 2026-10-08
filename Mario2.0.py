@@ -20,25 +20,21 @@ move_left = True
 
 
 def shift_true():
-    gravity()
     global shift
     shift = True
 
 
 def shift_false():
-    gravity()
     global shift
     shift = False
 
 
 def control_true():
-    gravity()
     global control
     control = True
 
 
 def control_false():
-    gravity()
     global control
     control = False
 
@@ -156,8 +152,8 @@ def start():
 def controls1():
     screen1.onkeypress(shift_true, "Shift_L")
     screen1.onkeyrelease(shift_false, "Shift_L")
-    screen1.onkeypress(control_true, "Control_R")
-    screen1.onkeyrelease(control_false, "Control_R")
+    screen1.onkeypress(control_true, "Control_L")
+    screen1.onkeyrelease(control_false, "Control_L")
     screen1.onkeypress(jump, "Up")
     screen1.onkeypress(start_back, "Left")
     screen1.onkeyrelease(stop_back, "Left")
