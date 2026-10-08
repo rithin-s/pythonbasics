@@ -40,7 +40,6 @@ def control_false():
 
 
 def jump():
-    print(mario.ycor())
     global control, shift, y
     y = mario.ycor()
     if shift:
@@ -58,10 +57,6 @@ def jump():
 
 def start_front():
     global move_right, life, currentscreen
-    print(mario.xcor())
-    print("start front")
-    print("Currentscreen = ", currentscreen)
-    print("Move right = ", move_right)
     load_screens()
     wall_collision_forward()
     if move_right:
@@ -102,10 +97,6 @@ def stop_front():
 
 def start_back():
     global move_left, life, currentscreen
-    print(mario.xcor())
-    print("start back")
-    print("Currentscreen = ", currentscreen)
-    print("Move left = ", move_left)
     wall_collision_backward()
     if move_left:
         mario.back(10)
@@ -209,8 +200,7 @@ def wall_collision_forward():
                             move_left = True
                     elif not move_left:
                         move_right = True
-                    elif b % 2 == 0:
-                        print("right wall collided")
+                    elif b % 2:
                         move_left = True
                         move_right = False
             elif currentscreen == 2:
@@ -246,7 +236,6 @@ h = 0
 
 
 def find_floorY():
-    print("find_floorY function start")
     global floor1X, floor1H, floor2X, floor2H, floor3X, floor3H,floor4X, floor4H, h, floor, currentscreen
     x = mario.xcor()
     try:
@@ -281,7 +270,6 @@ def find_floorY():
 
     except:
         print("error in finding floor")
-    print("find_floorY function end")
 
     #if x >= floor1X[0] and x <= floor1X[1]:ONE WAY TO DO IT(BUT USE LOOPS)
     #h = floor1H[1]
@@ -290,20 +278,15 @@ def find_floorY():
 
 
 def gravity():
-    print("gravity function start")
     try:
         find_floorY()
         global floor, currentscreen
-        print("Floor: ", floor)
         while mario.ycor() > floor:
             y = mario.ycor()
-            print("mario y cor = ", str(mario.ycor()))
-            print("floor = ", str(floor))
             mario.sety(y - 1)
 
     except:
         print("error in gravity function")
-    print("gravity function end")
 
 life = 3
 
@@ -337,8 +320,12 @@ def controls_screen():
     maker1.goto(-380, 100)
     maker1.write("Move Backward - Left arrow", font = 10)
     maker1.goto(-380, 50)
-    maker1.write("Jump - Up arrow", font = 10)
+    maker1.write("High Jump - Up arrow + Shift(left side)", font = 10)
     maker1.goto(-380, 0)
+    maker1.write("Medium Jump - Up arrow + Ctrl(left side)", font = 10)
+    maker1.goto(-380, -50)
+    maker1.write("Low Jump - Up arrow", font = 10)
+    maker1.goto(-380, -100)
     maker1.write("Exit - 0", font = 10)
     maker1.goto(0, 200)
     maker1.write("Rules :", font = ("Arial", 20, "bold"))
@@ -635,42 +622,33 @@ def enemy_run():
     global life, currentscreen
     while currentscreen == 3:
         if run_enemy.xcor() == 340:
-            print("In if 2")
             run_enemy.left(180)
             while run_enemy.xcor() > -330:
-                print("In while 3")
                 run_enemy.setx(run_enemy.xcor() - 1)
         elif run_enemy.xcor() == -330:
-            print("In elif")
             run_enemy.right(180)
             while run_enemy.xcor() != 340:
-                print("In while 1")
                 run_enemy.setx(run_enemy.xcor() + 1)
 
 def loadscreen1():
     global currentscreen
-    print("loadscreen1 function start")
     try:
         mario.setpos(-450, -200)
         mario.showturtle()
         currentscreen = 1
-        print("current screen :", currentscreen)
         screen1obstacles()
 
     except:
         print("error in load screen 1 function")
-    print("loadscreen1 function end")
 
 
 def loadscreen2():
-    print("loadscreen2 function start")
     try:
         mario.hideturtle()
         mario.setpos(-480, -95)
         mario.showturtle()
         global currentscreen
         currentscreen = 2
-        print("current screen :", currentscreen)
         maker1.clear()
         screen2obstacles()
         enemy1.showturtle()
@@ -682,13 +660,10 @@ def loadscreen2():
 
     except:
         print("error in load screen 2 function")
-    print("loadscreen2 function end")
 
 def loadscreen3():
     global currentscreen
-    print("loadscreen3 function")
     currentscreen = 3
-    print("Currentscreen : ", currentscreen)
     mario.hideturtle()
     mario.setpos(-480, -200)
     mario.showturtle()
@@ -702,12 +677,10 @@ def loadscreen3():
     enemy6.hideturtle()
     run_enemy.showturtle()
     enemy_run()
-    print("loadscreen3 function end")
 
 def loadscreen4():
     global currentscreen
     currentscreen = 4
-    print("Currentscreen = ", currentscreen)
     mario.hideturtle()
     mario.goto(-480, -200)
     mario.showturtle()
@@ -721,7 +694,6 @@ def loadscreen4():
     run_enemy.hideturtle()
 
 def load_screens():
-    print("load_screens function ")
     try:
         global currentscreen
         if currentscreen == 0 and mario.xcor() <= -450:
@@ -735,8 +707,6 @@ def load_screens():
 
     except:
         print("error in load screens function")
-    print("load_screens function end")
-
 
 controls_screen()
 
