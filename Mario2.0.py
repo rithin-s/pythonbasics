@@ -40,16 +40,19 @@ def control_false():
 
 
 def jump():
-    global control, shift, y
+    global control, shift, y, floor
     y = mario.ycor()
-    if shift:
-        mario.sety(y + 150)
+    if mario.ycor() <= floor:
+        if shift:
+            mario.sety(y + 150)
 
-    elif control:
-        mario.sety(y + 100)
+        elif control:
+            mario.sety(y + 100)
 
+        else:
+            mario.sety(y + 20)
     else:
-        mario.sety(y + 20)
+        mario.sety(y)
     gravity()
     wall_collision_backward()
     wall_collision_forward()
